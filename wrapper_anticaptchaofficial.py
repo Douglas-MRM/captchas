@@ -2,6 +2,7 @@ from .controller import get_key # TODO remove it "." to run locally
 from anticaptchaofficial import (
     imagecaptcha,
     hcaptchaproxyless,
+    recaptchav2proxyless,
 )
 
 
@@ -24,6 +25,18 @@ def hcaptcha(url: str, sitekey: str, invisible: bool = False) -> str | None:
     solver.set_website_url(url)
     solver.set_website_key(sitekey)
     solver.set_is_invisible(invisible)
+
+    g_response = solver.solve_and_return_solution()
+    if g_response != 0:
+        return g_response
+
+    return None
+
+def recaptcha_v2(url: str, sitekey: str) -> str | None:
+    solver = recaptchav2proxyless.recaptchaV2Proxyless()
+    solver.set_key(API_KEY)
+    solver.set_website_url(url)
+    solver.set_website_key(sitekey)
 
     g_response = solver.solve_and_return_solution()
     if g_response != 0:
