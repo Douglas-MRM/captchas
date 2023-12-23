@@ -1,3 +1,6 @@
+# File contains API keys managed by the library
+keys.json
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
